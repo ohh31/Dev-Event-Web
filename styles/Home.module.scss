@@ -1,45 +1,62 @@
 @import '~styles/_mixin.scss';
 
 .section {
-  width: 68.75rem;
-  padding-bottom: 5.439rem;
+  width: 80rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 
   &__header {
-    width: 68.75rem;
+    width: 80rem;
+    padding: 4.571rem 1.429rem 0rem 1.429rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     background-color: transparent;
-    padding-top: 2.688rem;
     margin: 0px;
 
-    &__desc {
+    &__title {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      font-weight: 500;
-      font-size: 1.23rem;
-      line-height: 1.8rem;
-      color: #0066c6;
 
-      span {
-        font-weight: 700;
-      }
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 120%;
+      letter-spacing: -0.02em;
+      color: #313234;
     }
+  }
 
-    &__filters {
+  &__sub-header {
+    width: 80rem;
+    padding: 2.857rem 1.429rem 0rem 1.429rem;
+
+    .event-filter {
       display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-end;
-      .wrapper {
-        padding-left: 0.625rem;
+      flex-direction: column;
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.714rem;
+      }
+
+      .filter-wrap {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .filters {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 0.714rem;
+        }
       }
     }
   }
@@ -52,8 +69,8 @@
   }
 
   &__list {
-    padding-top: 1.813rem;
-    width: 68.75rem;
+    width: 80rem;
+    padding: 1.813rem 1.429rem 0rem 1.429rem;
 
     &__title {
       font-weight: 700;

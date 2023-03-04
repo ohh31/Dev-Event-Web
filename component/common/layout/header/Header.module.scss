@@ -1,6 +1,6 @@
 @import '~styles/_mixin.scss';
 
-$color-background: #002034;
+$color-background: #ffffff;
 .header {
   position: fixed;
   top: 0;
@@ -10,14 +10,14 @@ $color-background: #002034;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 3.5rem;
+  height: 4.286rem;
   width: 100%;
-  padding: 0px 20px 0px 20px;
   background-color: $color-background;
 
   &__inner {
-    width: 68.75rem;
-    height: 3.5rem;
+    width: 80rem;
+    height: 4.286rem;
+    padding: 0rem 1.429rem 0rem 1.429rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -41,14 +41,6 @@ $color-background: #002034;
 
     .wrapper {
       padding-left: 24px;
-    }
-
-    .search-button {
-      border: none;
-      background-color: transparent;
-      width: 30px;
-      height: 30px;
-      cursor: pointer;
     }
   }
 }

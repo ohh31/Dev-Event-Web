@@ -3,11 +3,14 @@ import { useScheduledEvents } from 'lib/hooks/useSWR';
 import { EventResponse, EventDate } from 'model/event';
 import classNames from 'classnames/bind';
 import style from 'styles/Home.module.scss';
-import dayjs from 'dayjs';
 import { ThreeDots } from 'react-loader-spinner';
 import List from 'component/common/list/list';
 import { DateUtil } from 'lib/utils/dateUtil';
+import FillButton from 'component/common/buttons/FillButton';
+import Link from 'next/link';
+import * as ga from 'lib/utils/gTag';
 import EventFilters from './EventFilters';
+
 const cn = classNames.bind(style);
 
 const ScheduledEventList = ({ fallbackData }: { fallbackData: EventResponse[] }) => {
@@ -62,12 +65,27 @@ const ScheduledEventList = ({ fallbackData }: { fallbackData: EventResponse[] })
   return (
     <>
       <div className={cn('section__header')}>
-        <span className={cn('section__header__desc')}>
-          현재&nbsp;<span>{totalCount}개</span>의 개발자 행사 진행 중
+        <span className={cn('section__header__title')}>전체 행사</span>
+        <span className={cn('section__header__button')}>
+          <Link href={'https://forms.gle/UUjUVg1tTrKhemKu9'}>
+            <a target="_blank">
+              <FillButton
+                color="primary"
+                label="+ 행사 추가 요청"
+                onClick={() => {
+                  ga.event({
+                    action: 'web_event_행사등록버튼클릭',
+                    event_category: 'web_event',
+                    event_label: '행사등록',
+                  });
+                }}
+              />
+            </a>
+          </Link>
         </span>
-        <div className={cn('section__header__filters')}>
-          <EventFilters />
-        </div>
+      </div>
+      <div className={cn('section__sub-header')}>
+        <EventFilters />
       </div>
       {scheduledEvents ? (
         scheduledEvents.length !== 0 ? (
@@ -90,7 +108,7 @@ const ScheduledEventList = ({ fallbackData }: { fallbackData: EventResponse[] })
               <>
                 <div className={cn('section__list')}>
                   <div className={cn('section__list__title')}>
-                    <span>{`${event.metadata.year}년 ${event.metadata.month}월`}</span>
+                    <span>{`${event.metadata.month}월`}</span>
                   </div>
                   <List data={lists} />
                 </div>

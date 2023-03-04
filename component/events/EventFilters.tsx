@@ -8,6 +8,9 @@ import { useRouter } from 'next/router';
 import dayjs from 'dayjs';
 import { useScheduledEvents, useTags } from 'lib/hooks/useSWR';
 import * as ga from 'lib/utils/gTag';
+import FilterTag from 'component/common/tag/FilterTag';
+import SearchInput from 'component/common/input/SearchInput';
+import DateInput from 'component/common/input/DateInput';
 
 const cn = classNames.bind(style);
 
@@ -63,56 +66,83 @@ const EventFilters = () => {
   const getTagList = () => {
     if (tags && !isTagError) {
       const list = tags.map((tag) => {
-        return { tag_name: tag.tag_name, tag_color: tag.tag_color };
+        return tag.tag_name;
       });
+      console.log(list);
+
       return list;
     }
     return [];
   };
 
+  const onClickFilterOption = (event: any) => {
+    ga.event({
+      action: 'web_event_태그옵션클릭',
+      event_category: 'web_event',
+      event_label: '검색',
+    });
+    if (event.target.innerText === '전체') {
+      router.replace(`/events`);
+    } else {
+      const tag = event.target.innerText.replace(/[\t\s\#]/g, '');
+      router.replace(`/search?tag=${tag}`);
+    }
+  };
+
+  const TagOptions = ['태그1', '태그2', '태그3', '태그4', '태그5', '태그6'];
   return (
-    <>
-      <Dropdown
-        options={getDateList()}
-        placeholder="전체"
-        value={filter.date}
-        icon={<AiTwotoneCalendar size={16} />}
-        onClick={(event: any) => {
-          ga.event({
-            action: 'web_event_월별옵션클릭',
-            event_category: 'web_event',
-            event_label: '검색',
-          });
-          if (event.target.innerText === '전체') {
-            router.replace(`/events`);
-          } else {
-            const date = event.target.innerText.replace(/[\t\s]/g, '').split(/[년, 월]/);
-            router.replace(`/calender?year=${date[0]}&month=${date[1]}`);
-          }
-        }}
-      ></Dropdown>
-      <span className={cn('wrapper')}>
-        <Dropdown
-          options={getTagList()}
-          placeholder="태그"
-          icon={<BiPurchaseTagAlt size={16} />}
-          type="expand"
-          onClick={(event: any) => {
-            ga.event({
-              action: 'web_event_태그옵션클릭',
-              event_category: 'web_event',
-              event_label: '검색',
-            });
-            if (event.target.innerText === '전체') {
-              router.replace(`/events`);
-            } else {
-              const tag = event.target.innerText.replace(/[\t\s\#]/g, '');
-              router.replace(`/search?tag=${tag}`);
-            }
-          }}
-        ></Dropdown>
-      </span>
-    </>
+    <div className={cn('event-filter')}>
+      <div className={cn('tags')}>
+        {TagOptions.map((option) => {
+          return <FilterTag label={option} state="clicked" />;
+        })}
+      </div>
+      <div className={cn('filter-wrap')}>
+        <div className={cn('filters')}>
+          <SearchInput />
+          <Dropdown
+            placeholder="행사 유형"
+            options={getTagList()}
+            value={filter.date}
+            onClick={onClickFilterOption}
+          ></Dropdown>
+          <Dropdown
+            placeholder="참여 방법"
+            options={['전체', '온라인', '오프라인']}
+            value={filter.date}
+            onClick={onClickFilterOption}
+          ></Dropdown>
+          <Dropdown
+            placeholder="비용"
+            options={['전체', '무료', '유료']}
+            value={filter.date}
+            onClick={onClickFilterOption}
+          ></Dropdown>
+        </div>
+        <div className={cn('datepicker')}>
+          <DateInput />
+          {/* <Dropdown
+            options={getDateList()}
+            placeholder="전체"
+            value={filter.date}
+            icon={<AiTwotoneCalendar size={16} />}
+            onClick={(event: any) => {
+              ga.event({
+                action: 'web_event_월별옵션클릭',
+                event_category: 'web_event',
+                event_label: '검색',
+              });
+              if (event.target.innerText === '전체') {
+                router.replace(`/events`);
+              } else {
+                const date = event.target.innerText.replace(/[\t\s]/g, '').split(/[년, 월]/);
+                router.replace(`/calender?year=${date[0]}&month=${date[1]}`);
+              }
+            }}
+          ></Dropdown> */}
+        </div>
+      </div>
+    </div>
   );
 };
 

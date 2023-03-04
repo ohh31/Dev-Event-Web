@@ -5,11 +5,10 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  width: 68.75rem;
-  height: 11.25rem;
+  padding: 0rem 1.5rem;
+  width: 67.5rem;
+  height: 11.438rem;
   background: #ffffff;
-  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
   cursor: pointer;
   transform: translateY(0px);
 
@@ -27,14 +26,14 @@
       position: absolute;
       top: 0px;
       left: 1.2rem;
-      z-index: 2;
+      // z-index: 2;
 
       animation-name: appearIn;
       animation-duration: 0.05s;
       animation-timing-function: linear;
 
       span {
-        z-index: 3;
+        // z-index: 3;
         padding-top: 20px;
         display: flex;
         flex-direction: row;
@@ -62,12 +61,11 @@
     }
 
     &__img {
-      width: 20rem;
-      height: 11.25rem;
+      width: 12.5rem;
+      height: 7rem;
       position: relative;
       .mask {
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
+        border-radius: 4px;
       }
     }
 
@@ -77,10 +75,9 @@
       backdrop-filter: blur(4px);
       position: absolute;
       z-index: 1;
-      width: 20rem;
-      height: 11.25rem;
-      border-top-left-radius: 10px;
-      border-bottom-left-radius: 10px;
+      width: 12.5rem;
+      height: 7rem;
+      border-radius: 4px;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -634,7 +631,7 @@
         border: solid 1px #e0e0e0;
         width: 376px;
         padding: 15px 10px 15px 10px;
-        z-index: 4;
+        // z-index: 4;
         animation-name: appearIn;
         animation-duration: 0.2s;
         animation-timing-function: linear;

@@ -1,22 +1,24 @@
 @import '~styles/_mixin.scss';
 
+$color-background: #f0f0f0;
+
 .banner {
   position: relative;
-  height: 27rem;
+  height: 20rem;
   width: 100%;
-  min-width: 68.75rem;
+  min-width: 80rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-self: flex-start;
-  padding: 0px 20px 0px 20px;
   z-index: 0;
+  background-color: $color-background;
 
   &__image {
     position: absolute;
-    height: 462px;
-    width: 100%;
+    height: 17.214rem;
+    width: 80rem;
   }
 
   &__title {

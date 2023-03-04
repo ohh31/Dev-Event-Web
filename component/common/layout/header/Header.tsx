@@ -28,7 +28,7 @@ function Header() {
           </div>
         </Link>
         <div className={cn('header__buttons')}>
-          <Link href={'https://forms.gle/UUjUVg1tTrKhemKu9'}>
+          {/* <Link href={'https://forms.gle/UUjUVg1tTrKhemKu9'}>
             <a>
               <TextButton
                 label="행사등록"
@@ -41,7 +41,7 @@ function Header() {
                 }}
               ></TextButton>
             </a>
-          </Link>
+          </Link> */}
 
           <span className={cn('wrapper')}>
             {authContext.isLoggedIn ? (
@@ -61,7 +61,7 @@ function Header() {
               ></TextButton>
             )}
           </span>
-          <span className={cn('wrapper')}>
+          {/* <span className={cn('wrapper')}>
             <button
               className={cn('search-button')}
               onClick={() => {
@@ -76,7 +76,7 @@ function Header() {
             >
               <SearchIcon />
             </button>
-          </span>
+          </span> */}
         </div>
       </div>
       <LoginModal isOpen={loginModalIsOpen} onClose={() => setLoginModalIsOpen(false)}></LoginModal>
